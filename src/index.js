@@ -18,6 +18,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ThemeProvider>
   </React.StrictMode>
 )
-
-// npm install @emotion/react
-// npm install @emotion/styled
