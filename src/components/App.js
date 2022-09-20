@@ -6,6 +6,8 @@ import { ContactList } from './ContactList/ContactList'
 import ContactsEditor from './ContactsEditor/ContactsEditor'
 import { Filter } from './Filter/Filter'
 
+import Layout from './Layout'
+
 const App = () => {
   const [contacts, setContacts] = useLocalStorage('contacts', [])
 
@@ -66,6 +68,7 @@ const App = () => {
 
   return (
     <>
+      <Layout></Layout>
       <h2>Phonebook</h2>
       <ContactsEditor onAddContact={addContact}></ContactsEditor>
 
@@ -97,4 +100,3 @@ const App = () => {
 }
 
 export default App
-
