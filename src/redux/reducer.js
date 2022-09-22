@@ -1,5 +1,11 @@
+import { createReducer } from '@reduxjs/toolkit'
+import {
+  addContact,
+  deleteContact,
+  toggleGroup,
+  setStatusFilter
+} from './actions'
 import { statusFilters } from './constants'
-import { addContact, deleteContact, toggleGroup, setStatusFilter } from "./actions";
 
 const contactsInitialState = [
   { id: 1, name: 'Rosie Simpson', number: '459-12-56', group: true },
@@ -12,50 +18,42 @@ const filtersInitialState = {
   status: statusFilters.all
 }
 
-export const contactsReducer = (state = contactsInitialState, action) => {
-  switch (action.type) {
-    case addContact.type:
-      const names = state.map(contact => contact.name)
-      console.log(names)
-      console.log(action.payload.name)
+export const contactsReducer = createReducer(contactsInitialState, {
+  [addContact]: (state, action) => {
+    const names = state.map(contact => contact.name)
 
-      if (names.find(myContact => myContact === action.payload.name)) {
-        alert(`${action.payload.name} is already in contacts`)
-        return
+    if (names.find(myContact => myContact === action.payload.name)) {
+      alert(`${action.payload.name} is already in contacts`)
+      return
+    }
+    return [...state, action.payload]
+  },
+
+  [deleteContact]: (state, action) => {
+    return state.filter(contact => contact.id !== action.payload)
+  },
+
+  [toggleGroup]: (state, action) => {
+    return state.map(contact => {
+      if (contact.id !== action.payload) {
+        return contact
       }
-      return [...state, action.payload]
-
-    case deleteContact.type:
-      return state.filter(contact => contact.id !== action.payload)
-
-    case toggleGroup.type:
-      return state.map(contact => {
-        if (contact.id !== action.payload) {
-          return contact
-        }
-        return { ...contact, group: !contact.group }
-      })
-
-    default:
-      return state
-  }
-}
-
-export const filtersReducer = (state = filtersInitialState, action) => {
-  switch (action.type) {
-    case 'filters/setStatusFilter':
       return {
-        ...state,
-        status: action.payload
+        ...contact,
+        group: !contact.group
       }
-
-    default:
-      return state
+    })
   }
-}
+})
 
-
-
+export const filtersReducer = createReducer(filtersInitialState, {
+  [setStatusFilter]: (state, action) => {
+    return {
+      ...state,
+      status: action.payload
+    }
+  }
+})
 
 // import { combineReducers } from 'redux'
 // import { statusFilters } from './constants'
