@@ -20,38 +20,40 @@ const filtersInitialState = {
 
 export const contactsReducer = createReducer(contactsInitialState, {
   [addContact]: (state, action) => {
-    const names = state.map(contact => contact.name)
-
-    if (names.find(myContact => myContact === action.payload.name)) {
-      alert(`${action.payload.name} is already in contacts`)
-      return
+    for (const contact of state) {
+      if (contact.name === action.payload.name) {
+        alert(`${action.payload.name} is already in contacts`)
+        break
+      }
     }
-    return [...state, action.payload]
+    state.push(action.payload);
+
+    // const names = state.map(contact => contact.name)
+    // if (names.find(contactName => contactName === action.payload.name)) {
+    //   alert(`${action.payload.name} is already in contacts`)
+    //   return
+    // }
+    // state.push(action.payload)
   },
 
   [deleteContact]: (state, action) => {
-    return state.filter(contact => contact.id !== action.payload)
+    const index = state.findIndex(contact => contact.id === action.payload)
+    state.splice(index, 1)
   },
 
   [toggleGroup]: (state, action) => {
-    return state.map(contact => {
-      if (contact.id !== action.payload) {
-        return contact
+    for (const contact of state) {
+      if (contact.id === action.payload) {
+        contact.group = !contact.group
+        break
       }
-      return {
-        ...contact,
-        group: !contact.group
-      }
-    })
+    }
   }
 })
 
 export const filtersReducer = createReducer(filtersInitialState, {
   [setStatusFilter]: (state, action) => {
-    return {
-      ...state,
-      status: action.payload
-    }
+    state.status = action.payload
   }
 })
 
