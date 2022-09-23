@@ -1,8 +1,7 @@
+import { useDispatch } from 'react-redux'
+import { addContact } from '../../redux/contactsSlice'
 import { Button } from 'components/Button/Button'
 import css from './ContactForm.module.css'
-
-import { useDispatch } from 'react-redux'
-import { addContact } from '../../redux/actions'
 
 export const ContactForm = () => {
   const dispatch = useDispatch()
@@ -29,7 +28,7 @@ export const ContactForm = () => {
         name='number'
         placeholder='Enter number...'
       />
-      
+
       <Button type='submit'>Add contact</Button>
     </form>
   )
