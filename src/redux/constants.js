@@ -1,7 +1,8 @@
 export const statusFilters = Object.freeze({
   all: "all",
-  active: "active",
+  // active: "active",
   group: "group",
+  search: '',
 });
 
 // OBJECT.FREEZE()

@@ -1,4 +1,6 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 const contactsInitialState = [
   { id: 1, name: 'Rosie Simpson', number: '459-12-56', group: true },
@@ -21,14 +23,15 @@ const contactsSlice = createSlice({
         }
         state.push(action.payload)
 
-        // const names = state.map(contact => contact.name)
+        // const names = state.map(({...contact}) => contact.name)
         // if (names.find(contactName => contactName === action.payload.name)) {
         //   alert(`${action.payload.name} is already in contacts`)
         //   return
         // }
         // state.push(action.payload)
       },
-      prepare (name, number) {
+      
+      prepare ({name, number}) {
         return {
           payload: {
             id: nanoid(),
@@ -57,5 +60,13 @@ const contactsSlice = createSlice({
 })
 
 
+const persistConfig = {
+  key: 'contactsList',
+  storage,
+  whiteList: ['contactsInitialState']
+}
+
 export const { addContact, deleteContact, toggleGroup } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
+
+export const contactsListReduser = persistReducer(persistConfig, contactsReducer)
