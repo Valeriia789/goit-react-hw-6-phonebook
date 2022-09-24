@@ -9,9 +9,10 @@ export const ContactCounter = () => {
     (acc, contact) => {
       if (contact.group) {
         acc.group += 1
-      } else {
-        acc.active += 1
-      }
+      } 
+      // else {
+      //   acc.active += 1
+      // }
       return acc
     },
     { active: 0, group: 0 }
@@ -19,7 +20,7 @@ export const ContactCounter = () => {
 
   return (
     <div>
-      <p className={css.text}>Active: {count.active}</p>
+      {/* <p className={css.text}>Active: {count.active}</p> */}
       <p className={css.text}>Group: {count.group}</p>
     </div>
   )

@@ -1,6 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit";
 import { statusFilters } from "./constants";
-
-const { createSlice } = require("@reduxjs/toolkit");
 
 const filtersInitialState = {
   status: statusFilters.all,
