@@ -1,37 +1,43 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
-import { ContactListItem } from '../ContactListItem/ContactListItem'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { ContactListItem } from '../ContactListItem/ContactListItem';
 
 export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts)
+  const contacts = useSelector(state => state.contacts);
+  // const filter = useSelector(state => state.filter);
+  
+  const totalContacts = contacts.length;
+  // const filteredContacts = getFilteredContacts(contacts)
 
   return (
-    <>
-      <ul>
-        {Array.isArray(contacts) ? contacts.map((contact) => {
-          return <ContactListItem
-            key={contact.id}
-            name={contact.name}
-            number={contact.number}
-            group={contact.group}
-          />
-        })
-      : null }
-      </ul>
-    </>
-  )
-}
+    <section>
+      <h2>Contacts</h2>
 
-// ContactList.propTypes = {
-//   onDeleteContact: PropTypes.func.isRequired,
-//   onUpdateContact: PropTypes.func.isRequired,
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       group: PropTypes.bool.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired
-//     })
-//   )
-// }
+      <ul>
+        {Array.isArray(contacts)
+          ? contacts.map(contact => {
+              return (
+                <ContactListItem
+                  key={contact.id}
+                  name={contact.name}
+                  number={contact.number}
+                  group={contact.group}
+                ></ContactListItem>
+              );
+            })
+          : null}
+      </ul>
+
+      <div>
+        <p>
+          Total contacts:
+          {totalContacts}
+        </p>
+        <p>
+          Close friends:
+          {/* {closeFriendsGroup} */}
+        </p>
+      </div>
+    </section>
+  );
+};
