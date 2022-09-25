@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { ContactListItem } from '../ContactListItem/ContactListItem';
 
+import { getFilteredContacts } from '../../redux/selector'
+
 export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts);
-  // const filter = useSelector(state => state.filter);
-  
+  // const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getFilteredContacts);
   const totalContacts = contacts.length;
-  // const filteredContacts = getFilteredContacts(contacts)
 
   return (
     <section>
