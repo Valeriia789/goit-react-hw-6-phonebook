@@ -75,9 +75,9 @@ const App = () => {
 
         {filteredContacts.length > 0 && (
           <ContactList
-            contacts={filteredContacts}
-            onDeleteContact={deleteContact}
-            onUpdateContact={updateGroup}
+            // contacts={filteredContacts}
+            // onDeleteContact={deleteContact}
+            // onUpdateContact={updateGroup}
           />
         )}
 

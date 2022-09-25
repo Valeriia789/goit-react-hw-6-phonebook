@@ -1,8 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 import { ContactListItem } from '../ContactListItem/ContactListItem'
 
-export const ContactList = ({ contacts, onDeleteContact, onUpdateContact }) => {
+export const ContactList = () => {
+  const contacts = useSelector(state => state.contacts)
+
   return (
     <>
       <ul>
@@ -12,8 +15,6 @@ export const ContactList = ({ contacts, onDeleteContact, onUpdateContact }) => {
             name={contact.name}
             number={contact.number}
             group={contact.group}
-            onDelete={() => onDeleteContact(contact.id)}
-            onUpdate={() => onUpdateContact(contact.id)}
           />
         })
       : null }
@@ -22,15 +23,15 @@ export const ContactList = ({ contacts, onDeleteContact, onUpdateContact }) => {
   )
 }
 
-ContactList.propTypes = {
-  onDeleteContact: PropTypes.func.isRequired,
-  onUpdateContact: PropTypes.func.isRequired,
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      group: PropTypes.bool.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired
-    })
-  )
-}
+// ContactList.propTypes = {
+//   onDeleteContact: PropTypes.func.isRequired,
+//   onUpdateContact: PropTypes.func.isRequired,
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//       group: PropTypes.bool.isRequired,
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string.isRequired
+//     })
+//   )
+// }
