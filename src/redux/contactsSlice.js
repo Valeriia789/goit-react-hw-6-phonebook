@@ -28,7 +28,7 @@ export const contactsSlice = createSlice({
             id: nanoid(),
             name,
             number,
-            group: false,
+            // group: false,
           },
         };
       },
