@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { ContactList } from './ContactList/ContactList';
 import ContactsEditor from './ContactsEditor/ContactsEditor';
 import { Filter } from './Filter/Filter';
@@ -8,7 +6,7 @@ const App = () => {
   return (
     <>
       <ContactsEditor />
-      <Filter/>
+      <Filter />
       <ContactList />
     </>
   );

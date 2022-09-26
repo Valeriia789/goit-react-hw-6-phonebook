@@ -7,7 +7,7 @@ export const ContactListItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   const onDeleteContactClicked = () => {
-      dispatch(deleteContact({id}));
+    dispatch(deleteContact({ id }));
   };
 
   return (
@@ -21,7 +21,9 @@ export const ContactListItem = ({ id, name, number }) => {
       Best friend
     </label> */}
 
-      <DeleteButton type='button' onClick={onDeleteContactClicked}>Delete</DeleteButton>
+      <DeleteButton type='button' onClick={onDeleteContactClicked}>
+        Delete
+      </DeleteButton>
     </ListItem>
   );
 };

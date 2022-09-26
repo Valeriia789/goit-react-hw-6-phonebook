@@ -13,10 +13,10 @@ export const ContactList = () => {
         contact.name.toLowerCase().includes(filter.toLowerCase())
       );
     }
-    return contacts
+    return contacts;
   };
 
-  const filteredContacts = getFilteredContacts()
+  const filteredContacts = getFilteredContacts();
 
   return (
     <section>
