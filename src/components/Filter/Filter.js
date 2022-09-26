@@ -1,27 +1,23 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { findContact } from '../../redux/filterSlice'
+import { findContact } from '../../redux/filterSlice';
 
-import { getFilter } from "../../redux/selector";
-
-import { Input } from '../commonStyles/Input.styled'
-
-// set: import { updateFilter} from '../../redux/filterSlice'
-// get export const getStatusFilter = state => state.filters.status;
+import { Input } from '../commonStyles/Input.styled';
 
 export const Filter = () => {
-  const filter = useSelector(getFilter)
+  const filter = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
-  const onUpdateFilter = e => dispatch(findContact(e.target.value))
+  const onUpdateFilter = e => dispatch(findContact(e.currentTarget.value));
+
   return (
     <Input
       value={filter}
+      name='filter'
       type='text'
       placeholder='Find contact'
-      onChange={event => onUpdateFilter(event.target.value)}
+      onChange={onUpdateFilter}
     />
-  )
-}
-
+  );
+};

@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contactsSlice';
 import { ListItem, DeleteButton } from './ContactListItem.styled';
 
-export const ContactListItem = ({ name, number, group }) => {
+export const ContactListItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   const onDeleteContactClicked = () => {
-      dispatch(deleteContact());
+      dispatch(deleteContact({id}));
   };
 
   return (
